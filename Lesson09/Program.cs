@@ -38,6 +38,26 @@ namespace Lesson09
             return RecursiveSum(minValue + 1, maxValue) + minValue;
         }
 
+        private static long AkkermanFunction( long n, long m )
+        {
+            if (n == 0)
+            {
+                return m + 1;
+            }
+            else if (n != 0 && m == 0)
+            {
+                return AkkermanFunction(n - 1, 1);
+            }
+            else if (n > 0 && m > 0)
+            {
+                return AkkermanFunction(n - 1, AkkermanFunction(n, m - 1));
+            }
+            else
+            {
+                return AkkermanFunction(n, m);
+            }
+        }
+
         static void Main( string[] args )
         {
             //Задача 64: Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
@@ -73,7 +93,16 @@ namespace Lesson09
             //    m = 2, n = 3 -> A(m,n) = 9
             //    m = 3, n = 2 -> A(m,n) = 29
             Console.WriteLine("Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.");
-
+            Console.Write("Введите m: ");
+            int mValue = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите n: ");
+            int nValie = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("m = {0}; n = {1} -> A(m, n) = {2}", mValue, nValie, AkkermanFunction(mValue, nValie));
+            Console.WriteLine("--- test mode ---");
+            mValue = 2; nValie = 3;
+            Console.WriteLine("m = {0}; n = {1} -> A(m, n) = {2}", mValue, nValie, AkkermanFunction(mValue, nValie));
+            mValue = 3; nValie = 2;
+            Console.WriteLine("m = {0}; n = {1} -> A(m, n) = {2}", mValue, nValie, AkkermanFunction(mValue, nValie));
             Console.ReadKey();
         }
     }
