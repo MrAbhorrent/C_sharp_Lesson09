@@ -16,19 +16,28 @@ namespace Lesson09
             Console.WriteLine(_divider);
         }
 
-        static void PrintNaturalNumber( int _n )
+        private static void PrintNaturalNumber( int _n )
         {
             Console.Write("{0}, ", _n);
             if (_n > 1) PrintNaturalNumber(_n - 1);
         }
 
-        static void PrintSequence( int _N )
+        private static void PrintSequence( int _N )
         {
             Console.Write(" N = {0} -> ", _N);
             PrintNaturalNumber(_n: _N);
             Console.WriteLine();
         }
         
+        private static int RecursiveSum(int minValue, int maxValue)
+        {            
+            if (minValue > maxValue)
+            {
+                return 0;
+            }
+            return RecursiveSum(minValue + 1, maxValue) + minValue;
+        }
+
         static void Main( string[] args )
         {
             //Задача 64: Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
@@ -46,7 +55,19 @@ namespace Lesson09
             //    M = 1; N = 15 -> 120
             //    M = 4; N = 8. -> 30
             Console.WriteLine("Задача 66: Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.");
-
+            Console.Write("Введите M: ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите N: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            if (m < n)
+            {
+                Console.WriteLine("M = {0}; N = {1} -> {2}", m, n, RecursiveSum(minValue: m, maxValue: n));
+            }
+            else
+            {
+                Console.WriteLine("M = {0}; N = {1} -> {2}", n, m, RecursiveSum(minValue: n, maxValue: m));
+            }
+            Console.WriteLine();
             Divider(screenWidth);
             //Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
             //    m = 2, n = 3 -> A(m,n) = 9
